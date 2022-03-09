@@ -22,7 +22,7 @@ As a Red team will have a Kali Linux VM as the main tool to attack. As a Blue te
 ## Scenario with no Azure Security service
 The diagrams below explain how we prepared the solution for the Red vs Blue scenario.
 
-![image](https://user-images.githubusercontent.com/97529152/157371437-d895f13c-8a25-42e4-94fe-1367f3028ca2.png)
+![image](https://user-images.githubusercontent.com/97529152/157374253-d4e03fc9-6dcb-483a-b5c4-86eae951cb2f.png)
 
 **NOTE:**
 The Kali Linux may be deploy in different ways, it will depend on your internal Security policies and rules. Those are some options you can consider:
