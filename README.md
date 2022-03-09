@@ -34,7 +34,7 @@ The Kali Linux may be deploy in different ways, it will depend on your internal 
 ## Scenario WITH Azure Security service
 The second diagram below is just an example of an attacks against the Web App, however with two layers of protection, the WAF and Microsoft Sentinel.
 
-![image](https://user-images.githubusercontent.com/97529152/157371801-bf7de26a-c5c3-4313-8f4c-eaad0321caaf.png)
+![image](https://user-images.githubusercontent.com/97529152/157374378-cefbb1fa-9eb9-491f-8b28-9452dd798c95.png)
 
 More details about each type of attack (Red Team) and the Azure Security services that will provide protection to the environment (Blue Team), will be in separated articles (links below).
 
