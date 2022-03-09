@@ -19,11 +19,11 @@ As a Red team will have a Kali Linux VM as the main tool to attack. As a Blue te
 -	Log Analytics (log repository)
 -	Sentinel (SIEM / SOAR)
 
-The diagrams below explain how we prepared the solution for the Red vs Blue scenario.
+**The diagrams below explain how we prepared the solution for the Red vs Blue scenario.
 
 ![image](https://user-images.githubusercontent.com/97529152/157371437-d895f13c-8a25-42e4-94fe-1367f3028ca2.png)
 
-The second diagram below is just an example of an attacks against the Web App, however with two layers of protection, the WAF and Microsoft Sentinel. 
+**The second diagram below is just an example of an attacks against the Web App, however with two layers of protection, the WAF and Microsoft Sentinel. 
 
 ![image](https://user-images.githubusercontent.com/97529152/157371801-bf7de26a-c5c3-4313-8f4c-eaad0321caaf.png)
 
@@ -31,11 +31,11 @@ More details about each type of attack (Red Team) and the Azure Security service
 
 ## The Box
 
-This entire environment may be deployed automatically through an ARM Template through this **<link>**. That is what is referred to in the title of this article as "a box", which means, everything together, in a single “box”, to make easier the deployment of the environment so that you may focus on the Security part of the exercise and play both Red and Blue team.
+This entire environment may be deployed automatically through an ARM Template through this **LINK**. That is what is referred to in the title of this article as "a box", which means, everything together, in a single “box”, to make easier the deployment of the environment so that you may focus on the Security part of the exercise and play both Red and Blue team.
 
 If you try to use a Microsoft or a MSDN Azure subscription, you will have to use this ARM Template that contains a version of Kali Linux that is allowed to be deployed on Microsoft or MSDN subscriptions.
-<link>
+**LINK**
 
-This ARM Template will require some additional steps to make Kali Linux work properly. Those steps are part of the document in the link above.
+This **ARM Template** will require some additional steps to make Kali Linux work properly. Those steps are part of the document in the link above.
 
 Both ARM Templates above will be available soon on a **Biceps** version as well.
