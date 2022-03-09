@@ -29,3 +29,5 @@ module modVMsRed 'modules/vms-red.bicep' = {
     parKaliVMSubnetName: modNetworkingRed.outputs.outSpokeSubnetKaliVMName
   }
 }
+
+output outKaliLinuxPublicIP string = modVMsRed.outputs.outKaliLinuxPublicIP

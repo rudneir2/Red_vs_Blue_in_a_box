@@ -69,5 +69,8 @@ module modNetworkSecurityBlue 'modules/networksecurity-blue.bicep' = {
   }
 }
 
+output outAzureFirewallPublicIP string = modNetworkSecurityBlue.outputs.outAzureFirewallPublicIP
+output outApplicationGatewayPublicIP string = modNetworkSecurityBlue.outputs.outApplicationGatewayPublicIP
+output outWebAppURL string = 'https://${modWebApp.outputs.outWebSiteName}.azurewebsites.net'
 
 

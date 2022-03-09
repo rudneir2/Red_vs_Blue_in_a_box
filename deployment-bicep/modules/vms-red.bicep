@@ -20,9 +20,21 @@ resource resAttackerNetwork 'Microsoft.Network/virtualNetworks@2021-05-01' exist
   name: parAttackerNetworkName
 }
 
-resource resWin10SubnetRef 'Microsoft.Network/virtualNetworks/subnets@2021-02-01' existing = {
+resource resKaliVmSubnetRef 'Microsoft.Network/virtualNetworks/subnets@2021-02-01' existing = {
   parent:  resAttackerNetwork
   name: parKaliVMSubnetName
+}
+
+resource resKaliVMPublicIP 'Microsoft.Network/publicIPAddresses@2021-02-01' ={
+  name: '${parKaliVmName}-PublicIP'
+  location: parRegion
+  sku: {
+    name: 'Basic'
+  }
+  properties: {
+    publicIPAddressVersion: 'IPv4'
+    publicIPAllocationMethod: 'Static'
+  }
 }
 
 resource resNicKaliVm 'Microsoft.Network/networkInterfaces@2021-05-01' = {
@@ -35,16 +47,19 @@ resource resNicKaliVm 'Microsoft.Network/networkInterfaces@2021-05-01' = {
         properties: {
           privateIPAddress: parKaliVmIPAddress
           subnet: {
-            id: resWin10SubnetRef.id
+            id: resKaliVmSubnetRef.id
           }
           privateIPAllocationMethod: 'Static'
+          publicIPAddress: {
+            id: resKaliVMPublicIP.id
+          }
         }
       }
     ]
   }
 }
 
-resource parKaliVm 'Microsoft.Compute/virtualMachines@2021-11-01' = {
+resource resKaliVm 'Microsoft.Compute/virtualMachines@2021-11-01' = {
   name: parKaliVmName
   location: parRegion
   plan: {
@@ -85,4 +100,6 @@ resource parKaliVm 'Microsoft.Compute/virtualMachines@2021-11-01' = {
     }
   }
 }
+
+output outKaliLinuxPublicIP string = resKaliVMPublicIP.properties.ipAddress
 

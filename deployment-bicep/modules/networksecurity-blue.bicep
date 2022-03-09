@@ -97,6 +97,11 @@ resource resAzureFirewall 'Microsoft.Network/azureFirewalls@2021-02-01' = {
       tier: parAzureFirewallTier
     }
   }
+  dependsOn: [
+    resFirewallPolicy_DefaultApplicationRuleCollectionGroup
+    resFirewallPolicy_DefaultDnatRuleCollectionGroup
+    resFirewallPolicy_DefaultApplicationRuleCollectionGroup
+  ]
 }
 
 resource resAzureFirewallDiagnostics 'microsoft.insights/diagnosticSettings@2021-05-01-preview' = {
@@ -373,6 +378,9 @@ resource resFirewallPolicy_DefaultNetworkRuleCollectionGroup 'Microsoft.Network/
       }
     ]
   }
+  dependsOn: [
+    resFirewallPolicy_DefaultDnatRuleCollectionGroup
+  ]
 }
 
 resource resFirewallPolicy_DefaultApplicationRuleCollectionGroup 'Microsoft.Network/firewallPolicies/ruleGroups@2019-06-01' = {
@@ -439,11 +447,14 @@ resource resFirewallPolicy_DefaultApplicationRuleCollectionGroup 'Microsoft.Netw
       }
     ]
   }
+  dependsOn: [
+    resFirewallPolicy_DefaultDnatRuleCollectionGroup
+    resFirewallPolicy_DefaultNetworkRuleCollectionGroup
+  ]
 }
 
-
 resource resAppGWPublicIP 'Microsoft.Network/publicIPAddresses@2021-02-01' ={
-  name: '${parAzureFirewallName}-PublicIP'
+  name: '${parApplicationGatewayName}-PublicIP'
   location: parRegion
   sku: {
     name: 'Standard'
@@ -731,3 +742,5 @@ resource resAppGatewayWAFPolicy 'Microsoft.Network/ApplicationGatewayWebApplicat
   }
 }
 
+output outAzureFirewallPublicIP string = resAzureFirewallPublicIP.properties.ipAddress
+output outApplicationGatewayPublicIP string = resAppGWPublicIP.properties.ipAddress

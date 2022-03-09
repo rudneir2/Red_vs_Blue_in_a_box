@@ -34,6 +34,8 @@ param parServiceEndpoints array = [
   }
 ]
 
+param parNetworkSecurityGroupKaliSubnetName string = '${parAttackerNetworkName}-kali-nsg'
+
 resource resAttackerVirtualNetwork 'Microsoft.Network/virtualNetworks@2021-02-01' = {
   name: parAttackerNetworkName
   location: parRegion
@@ -50,8 +52,55 @@ resource resAttackerVirtualNetwork 'Microsoft.Network/virtualNetworks@2021-02-01
         privateEndpointNetworkPolicies: 'Enabled'
         privateLinkServiceNetworkPolicies: 'Enabled'
         serviceEndpoints: empty(parServiceEndpoints) ? null : parServiceEndpoints        
+        networkSecurityGroup: {
+          id: resNetworkSecurityGroupKali.id
+        }
       }
     }]
+  }
+}
+
+resource resNetworkSecurityGroupKali 'Microsoft.Network/networkSecurityGroups@2020-04-01' = {
+  name: parNetworkSecurityGroupKaliSubnetName
+  location: parRegion
+  tags: {}
+  properties: {
+    securityRules: [
+      {
+        name: 'Allow-SSH'
+        properties: {
+          protocol: '*'
+          sourcePortRange: '*'
+          destinationPortRange: '22'
+          sourceAddressPrefix: '*'
+          destinationAddressPrefix: 'VirtualNetwork'
+          access: 'Allow'
+          priority: 100
+          direction: 'Inbound'
+          sourcePortRanges: []
+          destinationPortRanges: []
+          sourceAddressPrefixes: []
+          destinationAddressPrefixes: []
+        }
+      }
+      {
+        name: 'Allow-RDP'
+        properties: {
+          protocol: '*'
+          sourcePortRange: '*'
+          destinationPortRange: '3389'
+          sourceAddressPrefix: '*'
+          destinationAddressPrefix: 'VirtualNetwork'
+          access: 'Allow'
+          priority: 200
+          direction: 'Inbound'
+          sourcePortRanges: []
+          destinationPortRanges: []
+          sourceAddressPrefixes: []
+          destinationAddressPrefixes: []
+        }
+      }
+    ]
   }
 }
 

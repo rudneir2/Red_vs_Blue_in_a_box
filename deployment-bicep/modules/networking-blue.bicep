@@ -176,6 +176,20 @@ resource resPeeringHubToSpoke 'Microsoft.Network/virtualNetworks/virtualNetworkP
   }
 }
 
+resource resPeeringSpokeToHub 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2021-05-01' = {
+  parent: resSpokeVirtualNetwork
+  name: '${resSpokeVirtualNetwork.name}-Peering-To-${resHubVirtualNetwork.name}'
+  properties: {
+    remoteVirtualNetwork: {
+      id: resHubVirtualNetwork.id
+    }
+    allowVirtualNetworkAccess: true
+    allowForwardedTraffic: true
+    allowGatewayTransit: false
+    useRemoteGateways: false
+  }
+}
+
 resource resSpoketoHubRT 'Microsoft.Network/routeTables@2021-05-01' = {
   name: parSpoketoHubRouteTableName
   location: parRegion
@@ -262,7 +276,7 @@ output outHubVirtualNetworkID string = resHubVirtualNetwork.id
 output outSpokeVirtualNetworkName string = resSpokeVirtualNetwork.name
 output outSpokeSubnetWin10VMName string = parSpokeSubnets[0].name
 output outSpokeSubnetWinSrv2019VMName string = parSpokeSubnets[1].name
-output outHubApplicationGatewaySubnetName string = parSpokeSubnets[0].name
+output outHubApplicationGatewaySubnetName string = parHubSubnets[0].name
 
 
 
