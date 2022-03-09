@@ -52,7 +52,7 @@ Both ARM Templates above will be available soon on a **Biceps** version as well.
 ## Red Team - the Attacks
 
 This environment considers simulation with the following attacks:
-1.	Web vulnerability scan **link**
+1.	Web vulnerability scan (https://github.com/rudneir2/attack-web_vulnerability_scan)
 2.	XSS (Cross-site scripting) **link**
 3.	SQLi **link**
 4.	AndreAttack **link**
