@@ -41,3 +41,16 @@ If you try to use a Microsoft or a MSDN Azure subscription, you will have to use
 This **ARM Template** will require some additional steps to make Kali Linux work properly. Those steps are part of the document in the link above.
 
 Both ARM Templates above will be available soon on a **Biceps** version as well.
+
+## Red Team - the Attacks
+
+This environment considers simulation with the following attacks:
+1.	Web vulnerability scan **link**
+2.	XSS (Cross-site scripting) **link**
+3.	SQLi **link**
+4.	AndreAttack **link**
+5.	AndreAttack **link**
+6.	SimonaAttack **link**
+7.	SimonaAttack **link**
+
+
