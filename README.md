@@ -24,6 +24,13 @@ The diagrams below explain how we prepared the solution for the Red vs Blue scen
 
 ![image](https://user-images.githubusercontent.com/97529152/157371437-d895f13c-8a25-42e4-94fe-1367f3028ca2.png)
 
+**NOTE:**
+The Kali Linux may be deploy in different ways, it will depend on your internal Security policies and rules. Those are some options you can consider:
+- everything on the same subscription and the same resorce group;
+- kali linux in a different resource group
+- kali linux in a different subscription 
+* *(this is how we did it! Kali on a private subscription and the rest of the environment on a Microsoft subscription)* *
+
 ## Scenario WITH Azure Security service
 The second diagram below is just an example of an attacks against the Web App, however with two layers of protection, the WAF and Microsoft Sentinel.
 
