@@ -20,3 +20,8 @@ As a Red team will have a Kali Linux VM as the main tool to attack. As a Blue te
 -	Sentinel (SIEM / SOAR)
 
 The diagrams below explain how we prepared the solution for the Red vs Blue scenario.
+
+![image](https://user-images.githubusercontent.com/97529152/157371437-d895f13c-8a25-42e4-94fe-1367f3028ca2.png)
+
+The second diagram below is an example of some attacks against the Web App however with two layers of protection, the WAF and Microsoft Sentinel. More details about each type of attack will be in separated articles (links).
+
