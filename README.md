@@ -53,4 +53,14 @@ This environment considers simulation with the following attacks:
 6.	SimonaAttack **link**
 7.	SimonaAttack **link**
 
+## How to execute the Attacks
+
+So, once you deploy the environment through the ARM template or manually, resource by resource, in case you prefer, you can start playing with both sides, the attacks and the defense.
+These is the prerequisites to deploy the environment and play with Red and Blue solutions:
+-	An Azure subscription
+-	A basic knowledge about ARM Template deployment
+-	An intermediate knowledge about Azure deployment in case you decide to deploy it manually, as this will require you to plan and deploy multiple resources
+Each attack listed above has its own playbook with instructions on how to start it and how to use the Azure security services to avoid or mitigate the attack.
+
+
 
