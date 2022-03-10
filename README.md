@@ -40,10 +40,9 @@ More details about each type of attack (Red Team) and the Azure Security service
 
 ## The Box
 
-This entire environment may be deployed automatically through an ARM Template through this **RICARDO LINK**. That is what is referred to in the title of this article as "a box", which means, everything together, in a single “box”, to make easier the deployment of the environment so that you may focus on the Security part of the exercise and play both Red and Blue team.
+This entire environment may be deployed automatically through an ARM Template through this [link](https://github.com/ricmmartins/ftahackathon2022). That is what is referred to in the title of this article as "a box", which means, everything together, in a single “box”, to make easier the deployment of the environment so that you may focus on the Security part of the exercise and play both Red and Blue team.
 
-If you try to use a Microsoft or a MSDN Azure subscription, you will have to use this ARM Template that contains a version of Kali Linux that is allowed to be deployed on Microsoft or MSDN subscriptions.
-**RICARDO LINK**
+If you try to use a Microsoft or a MSDN Azure subscription, you will have to use this ARM Template that contains a version of Kali Linux that is allowed to be deployed on Microsoft or MSDN subscriptions: [https://github.com/ricmmartins/ftahackathon2022](https://github.com/ricmmartins/ftahackathon2022)
 
 This **ARM Template** will require some additional steps to make Kali Linux work properly. Those steps are part of the document in the link above.
 
