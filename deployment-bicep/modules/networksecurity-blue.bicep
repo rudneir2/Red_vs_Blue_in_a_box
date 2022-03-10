@@ -179,8 +179,8 @@ resource resFirewallPolicy_DefaultDnatRuleCollectionGroup 'Microsoft.Network/fir
           ]
           ruleConditionType: 'NetworkRuleCondition'
         }
-        translatedAddress: resAppGWPublicIP.properties.ipAddress
-        translatedPort: '443'
+        translatedAddress: parApplicationGatewayPrivateIP
+        translatedPort: '8080'
       }
       {
         name: 'Win10'
@@ -208,58 +208,6 @@ resource resFirewallPolicy_DefaultDnatRuleCollectionGroup 'Microsoft.Network/fir
         translatedAddress: parWin10IPAddress
         translatedPort: '3389'
       }
-      /*{
-        name: 'Kali-SSH'
-        priority: 102
-        ruleType: 'FirewallPolicyNatRule'
-        action: {
-          type: 'DNAT'
-        }
-        ruleCondition: {
-          name: 'SSH-DNATRule'
-          ipProtocols: [
-            'TCP'
-          ]
-          destinationPorts: [
-            '22'
-          ]
-          sourceAddresses: [
-            '*'
-          ]
-          destinationAddresses: [
-            resAzureFirewallPublicIP.properties.ipAddress
-          ]
-          ruleConditionType: 'NetworkRuleCondition'
-        }
-        translatedAddress: NIC_Name2Ipaddress
-        translatedPort: '22'
-      }
-      {
-        name: 'Kali-RDP'
-        priority: 103
-        ruleType: 'FirewallPolicyNatRule'
-        action: {
-          type: 'DNAT'
-        }
-        ruleCondition: {
-          name: 'DNATRule'
-          ipProtocols: [
-            'TCP'
-          ]
-          destinationPorts: [
-            '33892'
-          ]
-          sourceAddresses: [
-            '*'
-          ]
-          destinationAddresses: [
-            resAzureFirewallPublicIP.properties.ipAddress
-          ]
-          ruleConditionType: 'NetworkRuleCondition'
-        }
-        translatedAddress: NIC_Name2Ipaddress
-        translatedPort: '3389'
-      }*/
       {
         name: 'WinServer2019'
         priority: 104
@@ -293,7 +241,6 @@ resource resFirewallPolicy_DefaultDnatRuleCollectionGroup 'Microsoft.Network/fir
 resource resFirewallPolicy_DefaultNetworkRuleCollectionGroup 'Microsoft.Network/firewallPolicies/ruleGroups@2019-06-01' = {
   parent: resFirewallPolicy
   name: 'DefaultNetworkRuleCollectionGroup'
-  //location: parRegion
   properties: {
     priority: 200
     rules: [
@@ -351,29 +298,12 @@ resource resFirewallPolicy_DefaultNetworkRuleCollectionGroup 'Microsoft.Network/
             ]
             sourceAddresses: [
               parWinServer2019IPAddress
-              /* Kali? */
             ]
             destinationAddresses: [
               parWin10IPAddress
             ]
             ruleConditionType: 'NetworkRuleCondition'
           }
-          /*{
-            name: 'Kali-HTTP'
-            ipProtocols: [
-              'TCP'
-            ]
-            destinationPorts: [
-              '80'
-            ]
-            sourceAddresses: [
-              Kali?
-            ]
-            destinationAddresses: [
-              '*'
-            ]
-            ruleConditionType: 'NetworkRuleCondition'
-          }*/
         ]
       }
     ]
@@ -386,7 +316,6 @@ resource resFirewallPolicy_DefaultNetworkRuleCollectionGroup 'Microsoft.Network/
 resource resFirewallPolicy_DefaultApplicationRuleCollectionGroup 'Microsoft.Network/firewallPolicies/ruleGroups@2019-06-01' = {
   parent: resFirewallPolicy
   name: 'DefaultApplicationRuleCollectionGroup'
-  //location: parRegion
   properties: {
     priority: 300
     rules: [
@@ -422,27 +351,6 @@ resource resFirewallPolicy_DefaultApplicationRuleCollectionGroup 'Microsoft.Netw
             fqdnTags: []
             ruleConditionType: 'ApplicationRuleCondition'
           }
-          /*{
-            name: 'Kali-InternetAccess'
-            protocols: [
-              {
-                protocolType: 'Http'
-                port: 80
-              }
-              {
-                protocolType: 'Https'
-                port: 443
-              }
-            ]
-            sourceAddresses: [
-              NIC_Name2Ipaddress
-            ]
-            targetFqdns: [
-              '*'
-            ]
-            fqdnTags: []
-            ruleConditionType: 'ApplicationRuleCondition'
-          }*/
         ]
       }
     ]
@@ -576,6 +484,16 @@ resource resApplicationGateway 'Microsoft.Network/applicationGateways@2021-05-01
           requestTimeout: 20
         }
       }
+      {
+        name: 'Default-HTTP'
+        properties: {
+            port: 80
+            protocol: 'Http'
+            cookieBasedAffinity: 'Disabled'
+            pickHostNameFromBackendAddress: false
+            requestTimeout: 20
+        }
+      }
     ]
     httpListeners: [
       {
@@ -590,6 +508,18 @@ resource resApplicationGateway 'Microsoft.Network/applicationGateways@2021-05-01
           protocol: 'Http'
         }
       }
+      {
+        name: 'Private-HTTP'
+        properties: {
+            frontendIPConfiguration: {
+                id: resourceId('Microsoft.Network/applicationGateways/frontendIPConfigurations', parApplicationGatewayName,'appGwPrivateFrontendIp')
+            }
+            frontendPort: {
+                id: resourceId('Microsoft.Network/applicationGateways/frontendPorts', parApplicationGatewayName,'port_8080')
+            }
+            protocol: 'Http'
+        }
+    }
     ]
     requestRoutingRules: [
       {
@@ -605,6 +535,21 @@ resource resApplicationGateway 'Microsoft.Network/applicationGateways@2021-05-01
           backendHttpSettings: {
             id: resourceId('Microsoft.Network/applicationGateways/backendHttpSettingsCollection', parApplicationGatewayName,'Default')
           }
+        }
+      }
+      {
+        name: 'PrivateIPRule'
+        properties: {
+            ruleType: 'Basic'
+            httpListener: {
+                id: resourceId('Microsoft.Network/applicationGateways/httpListeners', parApplicationGatewayName,'Private-HTTP')
+            }
+            backendAddressPool: {
+              id: resourceId('Microsoft.Network/applicationGateways/backendAddressPools', parApplicationGatewayName,'PAAS-APP')
+            }
+            backendHttpSettings: {
+                id: resourceId('Microsoft.Network/applicationGateways/backendHttpSettingsCollection', parApplicationGatewayName,'Default')
+            }
         }
       }
     ]

@@ -1,6 +1,6 @@
 param parCompanyPrefix string = 'blue'
 
-param parWebSiteName string = '${parCompanyPrefix}-web-app'
+param parWebSiteName string = '${parCompanyPrefix}-web-app-${take(uniqueString(guid(utcNow(), subscription().id)), 8)}'
 
 param parAppServicePlanName string = '${parWebSiteName}-app-service-plan'
 
