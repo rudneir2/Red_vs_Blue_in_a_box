@@ -46,7 +46,7 @@ If you try to use a Microsoft or a MSDN Azure subscription, you will have to use
 
 This **ARM Template** will require some additional steps to make Kali Linux work properly. Those steps are part of the document in the link above.
 
-Both ARM Templates above will be available soon on a **Biceps** version as well. **ANDREJ**
+You can also use **Bicep** Template for greater flexibility and option to deploy Red and Blue environments into different subscriptions. Follow [this](./deployment-bicep/bicepdeployment.md) guide to deploy Red and Blue environment with Bicep templates.
 
 ## Red Team - the Attacks
 
