@@ -88,6 +88,7 @@ sudo systemctl enable xrdp
 echo xfce4-session >~/.xsession
 sudo service xrdp restart
 ```
+After successful deployment you will be able to RDP into Kali Linux VM using same IP and set of credentials.
 
 ## Happy hacking!
 
