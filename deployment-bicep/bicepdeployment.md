@@ -77,7 +77,7 @@ To access sample Web App behind Application Gateway with Web Application Firewal
 
 ## Post deployment steps
 
-Kali Linux VM comes without xrdp service deployed. If you want to RDP into Kali Linux VM login via ssh first and execute following commands:
+Kali Linux VM comes without xrdp service deployed. If you want to RDP into Kali Linux VM, login via ssh first and execute following commands (note this will take a few minutes):
 
 ```
 wget --no-check-certificate https://http.kali.org/kali/pool/main/k/kali-archive-keyring/kali-archive-keyring_2022.1_all.deb
