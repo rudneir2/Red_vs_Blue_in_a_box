@@ -52,12 +52,9 @@ You can also use **Bicep** Template for greater flexibility and option to deploy
 
 This environment considers simulation with the following attacks:
 1.	Web vulnerability scan (https://github.com/rudneir2/attack-web_vulnerability_scan)
-2.	XSS (Cross-site scripting) **link**
-3.	SQLi **link**
-4.	AndreAttack **link**
-5.	AndreAttack **link**
-6.	SimonaAttack **link**
-7.	SimonaAttack **link**
+2.	XSS (Cross-site scripting) **link will be provided soon**
+3.	SQLi **link will be provided soon**
+4.  Web Attack (by Andre Murrel) (https://github.com/rudneir2/WebSiteAttack-byAndreMurrel-)
 
 ## How to execute the Attacks
 
