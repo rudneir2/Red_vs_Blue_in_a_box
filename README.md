@@ -54,7 +54,8 @@ This environment considers simulation with the following attacks:
 1.	Web vulnerability scan (https://github.com/rudneir2/attack-web_vulnerability_scan)
 2.	XSS (Cross-site scripting) **link will be provided soon**
 3.	SQLi **link will be provided soon**
-4.  Web Attack (by Andre Murrel) (https://github.com/rudneir2/WebSiteAttack-byAndreMurrel-)
+4.	DDOS attack and defense **link will be provided soon**
+5.  Web Attack (by Andre Murrel) (https://github.com/rudneir2/WebSiteAttack-byAndreMurrel-)
 
 ## How to execute the Attacks
 
