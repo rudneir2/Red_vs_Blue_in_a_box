@@ -48,23 +48,17 @@ This **ARM Template** will require some additional steps to make Kali Linux work
 
 You can also use **Bicep** Template for greater flexibility and option to deploy Red and Blue environments into different subscriptions. Follow [this](./deployment-bicep/bicepdeployment.md) guide to deploy Red and Blue environment with Bicep templates.
 
-## Red Team - the Attacks
+## Instructions to simulate and execute the Attacks and how to defend against it
 
-This environment considers simulation with the following attacks:
-1.	Web vulnerability scan (https://github.com/rudneir2/attack-web_vulnerability_scan)
-2.	XSS (Cross-site scripting) **link will be provided soon**
-3.	SQLi **link will be provided soon**
-4.	DDOS attack and defense **link will be provided soon**
-5.  Web Attack (by Andre Murrel) (https://github.com/rudneir2/WebSiteAttack-byAndreMurrel-)
+After you deploy the environment through ARM Template (you can deploy manually, resource by resource as well), you will find the instructions to start the attack and, how to protect against it by using one or more Azure Security services.
 
-## How to execute the Attacks
+1.	Web vulnerability scan (by Rudnei Oliveira) (https://github.com/rudneir2/attack-web_vulnerability_scan)
+2.	Web Attack (by Andre Murrel) (https://github.com/rudneir2/WebSiteAttack-byAndreMurrel-)
+3.	XSS (Cross-site scripting) **link will be provided soon**
+4.	SQLi **link will be provided soon**
+5.	DDOS attack and defense **link will be provided soon**
 
-So, once you deploy the environment through the ARM template or manually, resource by resource, in case you prefer, you can start playing with both sides, the attacks and the defense.
-These is the prerequisites to deploy the environment and play with Red and Blue solutions:
--	An Azure subscription
--	A basic knowledge about ARM Template deployment
--	An intermediate knowledge about Azure deployment in case you decide to deploy it manually, as this will require you to plan and deploy multiple resources
-Each attack listed above has its own playbook with instructions on how to start it and how to use the Azure security services to avoid or mitigate the attack.
+
 
 
 
